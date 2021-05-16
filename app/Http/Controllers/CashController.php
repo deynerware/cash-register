@@ -11,4 +11,39 @@ class CashController extends Controller
     {
         return Cash::all();
     }
+
+    public function store(Request $request)
+    {
+        Cash::create($request->all());
+    }
+
+    public function loadCash()
+    {
+        //
+    }
+
+    public function emptyCash()
+    {
+
+    }
+
+    public function makePayment(Request $request)
+    {
+
+    }
+
+    public function cashStatus()
+    {
+
+    }
+
+    public function cashLog()
+    {
+
+    }
+
+    public function log()
+    {
+        //
+    }
 }
