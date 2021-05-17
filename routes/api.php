@@ -14,4 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('cash', CashController::class);
+Route::post('cash', [CashController::class, 'store']);
+Route::get('cash', [CashController::class, 'index']);
+
+Route::get('cash/all', [CashController::class, 'getAllCash']);
+Route::get('cash/empty', [CashController::class, 'emptyCash']);
+
+Route::post('payment', [CashController::class, 'payment']);

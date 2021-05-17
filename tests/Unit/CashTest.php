@@ -13,27 +13,9 @@ class CashTest extends TestCase
     {
         parent::setUp();
 
-        $this->cash = [
-            50      => 0,
-            100     => 0,
-            200     => 0,
-            500     => 0,
-            1000    => 0,
-            5000    => 0,
-            10000   => 0,
-            20000   => 0,
-            50000   => 0,
-            100000  => 0,
-        ];
+        Cash::emptyCash();
     }
 
-    /** @test */
-    function can_load_an_array_of_cash()
-    {
-        Cash::loadCash($this->cash);
-
-        $this->assertEquals($this->cash, Cash::all());
-    }
 
     /** @test */
     public function can_modify_an_element_of_the_cash_array()
@@ -49,6 +31,7 @@ class CashTest extends TestCase
     public function can_get_an_element_of_the_cash_array()
     {
         Cash::enterCash(100, 2);
+
         $cash = Cash::getCash(100);
 
         $this->assertEquals($cash, 2);
@@ -60,6 +43,36 @@ class CashTest extends TestCase
         $cash = Cash::emptyCash();
 
         $this->assertEmpty($cash);
+    }
+
+    /** @test */
+    public function can_throw_an_exception_when_entering_a_wrong_denomination()
+    {
+        $this->expectException(\Exception::class);
+
+        Cash::enterCash(60, 30);
+    }
+
+    /** @test */
+    public function can_throw_an_exception_when_get_a_wrong_denomination()
+    {
+        $this->expectException(\Exception::class);
+
+        Cash::getCash(80);
+    }
+
+    /** @test */
+    public function can_drawout_an_element_of_the_cash_array()
+    {
+        Cash::enterCash(50, 30);
+        Cash::enterCash(100, 30);
+
+        Cash::drawoutCash([50 => 10, 100 => 20]);
+
+        $cash = Cash::all();
+
+        $this->assertEquals($cash[50], 20);
+        $this->assertEquals($cash[100], 10);
     }
 
 }

@@ -2,44 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cash;
 use Illuminate\Http\Request;
+use Merqueo\Cash;
+use Merqueo\Services\Cashier;
 
 class CashController extends Controller
 {
+    private $cashier;
+
+    public function __construct()
+    {
+        $this->cashier = new Cashier;
+    }
+
     public function index()
     {
-        return Cash::all();
+        return $this->cashier->getMoneyBase();
     }
 
     public function store(Request $request)
     {
-        Cash::create($request->all());
-    }
+        $data = $request->all();
 
-    public function loadCash()
-    {
-        //
+        Cash::enterCash($data['denomination'], $data['amount']);
     }
 
     public function emptyCash()
     {
+        $this->cashier->emptyRegisterCash();
 
+        return $this->getAllCash();
     }
 
-    public function makePayment(Request $request)
+    public function payment(Request $request)
     {
+        $data = $request->all();
 
+        return $this->cashier->payment($data['denomination'], $data['productPrice']);
     }
 
-    public function cashStatus()
+    public function getAllCash()
     {
-
+        return $this->cashier->totalCash();
     }
 
     public function cashLog()
     {
-
+        //
     }
 
     public function log()

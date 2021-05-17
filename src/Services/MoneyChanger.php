@@ -11,9 +11,9 @@ class MoneyChanger implements Changer
     protected $denominations;
     protected $amountOfMoney;
 
-    public function __construct(array $denomination, int $amountOfMoney)
+    public function __construct(array $denominations, int $amountOfMoney)
     {
-        $this->denominations = $denomination;
+        $this->denominations = $denominations;
         $this->amountOfMoney = $amountOfMoney;
     }
 
