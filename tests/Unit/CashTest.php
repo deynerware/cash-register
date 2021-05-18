@@ -67,7 +67,7 @@ class CashTest extends TestCase
         Cash::enterCash(50, 30);
         Cash::enterCash(100, 30);
 
-        Cash::drawoutCash([50 => 10, 100 => 20]);
+        Cash::substractCash([50 => 10, 100 => 20]);
 
         $cash = Cash::all();
 

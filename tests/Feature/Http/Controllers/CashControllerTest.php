@@ -31,7 +31,7 @@ class CashControllerTest extends TestCase
 
         $cashier = new Cashier;
 
-        $this->assertEquals($cashier->getMoneyBase(), [50000 => 2]);
+        $this->assertEquals($cashier->getMoneyBase(), [50000 => 2, 10000 => 5]);
     }
 
     /** @test */

@@ -56,7 +56,7 @@ class CashierTest extends TestCase
 
         $expected = 460000;
 
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($expected, $result['total']);
     }
 
     /** @test */

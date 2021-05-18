@@ -18,11 +18,13 @@ class Cashier
 
         $moneyChanger = new MoneyChanger($denominations, $change);
 
-        //$this->withdrawCash($moneyChanger->change());
+        $bills = $moneyChanger->change();
 
         Cash::enterCash($denomination);
 
-        return $moneyChanger->change();
+        Cash::substractCash($bills);
+
+        return $bills;
     }
 
     public function totalCash()
@@ -41,9 +43,9 @@ class Cashier
         Cash::emptyCash();
     }
 
-    public function withdrawCash(array $bills)
+    public function substractCash($denomination, $amount)
     {
-        Cash::drawoutCash($bills);
+        Cash::substractCash($denomination, $amount);
     }
 
     public function getMoneyBase()

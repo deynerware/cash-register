@@ -53,7 +53,7 @@ class Cash
         return self::$cash[$denomination];
     }
 
-    public static function drawoutCash(array $bills): void
+    public static function substractCash(array $bills): void
     {
         foreach ($bills as $denomination => $amount) {
             self::$cash[$denomination] = self::$cash[$denomination] - $amount;
