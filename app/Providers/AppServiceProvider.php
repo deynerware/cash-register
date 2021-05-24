@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Merqueo\Logs\FileLogger;
+use Merqueo\Contracts\Logger;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+                Logger::class,
+                FileLogger::class
+            );
     }
 
     /**

@@ -41,8 +41,12 @@ class CashControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                50000 => 2,
-                10000 => 5
+                'status' => true,
+                'data' => [
+                    50000 => 2,
+                    10000 => 5,
+                ],
+                'code' => 200,
             ]);
     }
 

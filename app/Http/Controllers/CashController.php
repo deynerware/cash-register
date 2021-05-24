@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Merqueo\Cash;
+use Illuminate\Http\Request;
+use Merqueo\Traits\Response;
 use Merqueo\Services\Cashier;
+use Illuminate\Http\ResponseTrait;
 
 class CashController extends Controller
 {
+    use Response;
+
     private $cashier;
 
     public function __construct()
@@ -17,7 +21,9 @@ class CashController extends Controller
 
     public function index()
     {
-        return $this->cashier->getMoneyBase();
+        $data = $this->cashier->getMoneyBase();
+
+        $this->sendOk($data);
     }
 
     public function store(Request $request)
