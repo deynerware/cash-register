@@ -63,7 +63,11 @@ class CashControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                10000 => 4
+                'status' => true,
+                'data' => [
+                    10000 => 4
+                ],
+                'code' => 200,
             ]);
     }
 
@@ -74,7 +78,11 @@ class CashControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                'total' => 150000
+                'status' => true,
+                'data' => [
+                    'total' => 150000
+                ],
+                'code' => 200,
             ]);
     }
 
@@ -85,7 +93,11 @@ class CashControllerTest extends TestCase
 
         $response->assertStatus(200)
         ->assertJson([
-            'total' => 0
+            'status' => true,
+            'data' => [
+                'result' => 'The box was emptied'
+            ],
+            'code' => 200,
         ]);
     }
 }

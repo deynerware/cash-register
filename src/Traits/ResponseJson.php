@@ -2,7 +2,7 @@
 
 namespace Merqueo\Traits;
 
-trait Response
+trait ResponseJson
 {
     public function sendOk($data, $code = 200)
     {
