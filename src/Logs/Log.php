@@ -6,20 +6,20 @@ use Merqueo\Contracts\Logger;
 
 class Log
 {
-    protected static $logger;
+    protected $logger;
 
-    public static function setLogger(Logger $logger)
+    public function __construct(Logger $logger)
     {
-        self::$logger = $logger;
+        $this->logger = $logger;
     }
 
-    public static function getLogger()
+    public function getLogger()
     {
-        return self::$logger;
+        return $this->logger;
     }
 
-    public static function info($message)
+    public function info($message)
     {
-        static::$logger->info($message);
+        $this->logger->info($message);
     }
 }
